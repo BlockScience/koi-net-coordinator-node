@@ -2,3 +2,4 @@ koi-net>=1.0.0b5
 rid-lib>=3.2.2
 fastapi
 uvicorn
+rich
