@@ -1,4 +1,6 @@
-.cache
+rid_cache
+identity.json
+events_queue.json
 venv
 *.json
 __pycache__
