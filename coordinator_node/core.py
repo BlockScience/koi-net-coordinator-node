@@ -13,7 +13,8 @@ node = NodeInterface(
             event=[KoiNetNode, KoiNetEdge],
             state=[KoiNetNode, KoiNetEdge]
         )
-    )
+    ),
+    use_kobj_processor_thread=True
 )
 
 from . import handlers

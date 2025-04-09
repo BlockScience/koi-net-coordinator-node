@@ -1,6 +1,6 @@
 import logging
 from contextlib import asynccontextmanager
-from fastapi import FastAPI, BackgroundTasks
+from fastapi import FastAPI
 from koi_net.processor.knowledge_object import KnowledgeSource
 from koi_net.protocol.api_models import (
     PollEvents,
@@ -27,9 +27,9 @@ logger = logging.getLogger(__name__)
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    node.initialize()
+    node.start()
     yield
-    node.finalize()
+    node.stop()
 
 app = FastAPI(
     lifespan=lifespan, 
@@ -39,13 +39,11 @@ app = FastAPI(
 )
 
 @app.post(BROADCAST_EVENTS_PATH)
-def broadcast_events(req: EventsPayload, background: BackgroundTasks):
+def broadcast_events(req: EventsPayload):
     logger.info(f"Request to {BROADCAST_EVENTS_PATH}, received {len(req.events)} event(s)")
     for event in req.events:
         node.processor.handle(event=event, source=KnowledgeSource.External)
     
-    background.add_task(node.processor.flush_kobj_queue)
-
 @app.post(POLL_EVENTS_PATH)
 def poll_events(req: PollEvents) -> EventsPayload:
     logger.info(f"Request to {POLL_EVENTS_PATH}")
