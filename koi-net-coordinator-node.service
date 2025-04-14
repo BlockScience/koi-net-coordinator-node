@@ -1,0 +1,11 @@
+[Unit]
+Description=KOI-net Coordinator Node Service
+After=network.target
+
+[Service]
+WorkingDirectory=/home/dev/koi-net-coordinator-node
+ExecStart=/home/dev/koi-net-coordinator-node/venv/bin/python3 -m coordinator_node
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
