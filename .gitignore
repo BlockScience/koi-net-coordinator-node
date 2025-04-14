@@ -2,5 +2,6 @@ rid_cache
 identity.json
 events_queue.json
 venv
+.env
 *.json
 __pycache__
