@@ -28,9 +28,12 @@ def handshake_handler(proc: ProcessorInterface, kobj: KnowledgeObject):
     
     logger.info("Proposing new edge")    
     # defer handling of proposed edge
-    proc.handle(bundle=generate_edge_bundle(
+    
+    edge_bundle = generate_edge_bundle(
         source=kobj.rid,
         target=proc.identity.rid,
         edge_type=EdgeType.WEBHOOK,
         rid_types=[KoiNetNode, KoiNetEdge]
-    ))
+    )
+    proc.handle(rid=edge_bundle.rid, event_type=EventType.FORGET)
+    proc.handle(bundle=edge_bundle)
