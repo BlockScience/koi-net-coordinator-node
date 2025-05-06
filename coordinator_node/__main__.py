@@ -1,4 +1,8 @@
 import uvicorn
-from .config import PORT
+from .core import node
 
-uvicorn.run("coordinator_node.server:app", port=PORT, log_config=None)
+uvicorn.run(
+    app="coordinator_node.server:app",
+    host=node.config.server.host, 
+    port=node.config.server.port
+)
