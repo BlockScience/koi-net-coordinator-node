@@ -32,18 +32,24 @@ async def lifespan(app: FastAPI):
     node.stop()
 
 app = FastAPI(
-    lifespan=lifespan, 
+    lifespan=lifespan,
     root_path="/koi-net",
     title="KOI-net Protocol API",
     version="1.0.0"
 )
+
+@app.get("/health", tags=["System"])
+async def health_check():
+    """Basic health check for the service."""
+    return {"status": "healthy", "node_id": str(node.identity.rid) if node.identity else "uninitialized"}
+
 
 @app.post(BROADCAST_EVENTS_PATH)
 def broadcast_events(req: EventsPayload):
     logger.info(f"Request to {BROADCAST_EVENTS_PATH}, received {len(req.events)} event(s)")
     for event in req.events:
         node.processor.handle(event=event, source=KnowledgeSource.External)
-    
+
 @app.post(POLL_EVENTS_PATH)
 def poll_events(req: PollEvents) -> EventsPayload:
     logger.info(f"Request to {POLL_EVENTS_PATH}")
@@ -61,4 +67,3 @@ def fetch_manifests(req: FetchManifests) -> ManifestsPayload:
 @app.post(FETCH_BUNDLES_PATH)
 def fetch_bundles(req: FetchBundles) -> BundlesPayload:
     return node.network.response_handler.fetch_bundles(req)
-    

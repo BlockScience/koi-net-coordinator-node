@@ -1,0 +1,20 @@
+server:
+  host: 127.0.0.1
+  port: 8000
+  path: /koi-net
+koi_net:
+  node_name: coordinator
+  node_rid: orn:koi-net.node:coordinator+40610903-4272-4494-91fd-1e57501a0980
+  node_profile:
+    base_url: http://127.0.0.1:8000/koi-net
+    node_type: FULL
+    provides:
+      event:
+      - orn:koi-net.node
+      - orn:koi-net.edge
+      state:
+      - orn:koi-net.node
+      - orn:koi-net.edge
+  cache_directory_path: .koi
+  event_queues_path: .koi/coordinator/queues.json
+  first_contact: ''
