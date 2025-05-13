@@ -1,4 +1,5 @@
 import logging
+import asyncio
 from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from koi_net.processor.knowledge_object import KnowledgeSource
@@ -20,16 +21,23 @@ from koi_net.protocol.consts import (
     FETCH_BUNDLES_PATH
 )
 from .core import node
-
+from fastapi.openapi.utils import get_openapi
 
 logger = logging.getLogger(__name__)
 
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    node.start()
+    # Schedule node.start() *after* the server is ready to accept connections
+    task = asyncio.create_task(_delayed_node_start())
     yield
     node.stop()
+    if not task.done():
+        task.cancel()
+
+async def _delayed_node_start():
+    await asyncio.sleep(0.5)
+    node.start()
 
 app = FastAPI(
     lifespan=lifespan,
@@ -37,6 +45,14 @@ app = FastAPI(
     title="KOI-net Protocol API",
     version="1.0.0"
 )
+
+def get_all_paths(app):
+    openapi_schema = get_openapi(
+        title=app.title,
+        version=app.version,
+        routes=app.routes,
+    )
+    return list(openapi_schema["paths"].keys())
 
 @app.get("/health", tags=["System"])
 async def health_check():
@@ -67,3 +83,7 @@ def fetch_manifests(req: FetchManifests) -> ManifestsPayload:
 @app.post(FETCH_BUNDLES_PATH)
 def fetch_bundles(req: FetchBundles) -> BundlesPayload:
     return node.network.response_handler.fetch_bundles(req)
+
+# Example usage:
+paths = get_all_paths(app)
+print(f"Paths: {paths}")
