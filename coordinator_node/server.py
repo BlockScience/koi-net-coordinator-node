@@ -1,6 +1,7 @@
 import logging
 from contextlib import asynccontextmanager
-from fastapi import FastAPI
+from fastapi import FastAPI, Request
+from starlette.responses import Response, StreamingResponse
 from koi_net.processor.knowledge_object import KnowledgeSource
 from koi_net.protocol.api_models import (
     PollEvents,
@@ -37,6 +38,29 @@ app = FastAPI(
     title="KOI-net Protocol API",
     version="1.0.0"
 )
+
+@app.middleware("http")
+async def test_middleware(request: Request, call_next):
+    response: StreamingResponse = await call_next(request)
+    
+    body = b""
+    async for chunk in response.body_iterator:
+        body += chunk
+    
+    signature = node.identity.priv_key.sign(body)
+    
+    signed_response = Response(
+        content=body,
+        status_code=response.status_code,
+        headers={
+            "koi-net-source-node-rid": str(node.identity.rid),
+            "KOI-Net-Response-Signature": signature,
+            **dict(response.headers)
+        },
+        media_type=response.media_type
+    )
+        
+    return signed_response
 
 @app.post(BROADCAST_EVENTS_PATH)
 def broadcast_events(req: EventsPayload):
