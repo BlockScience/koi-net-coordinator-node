@@ -1,7 +1,6 @@
 import logging
 from contextlib import asynccontextmanager
 from fastapi import FastAPI, APIRouter
-from koi_net.processor.knowledge_object import KnowledgeSource
 from koi_net.protocol.api_models import (
     PollEvents,
     FetchRids,
@@ -48,7 +47,7 @@ koi_net_router = APIRouter(
 async def broadcast_events(req: SignedEnvelope[EventsPayload]):    
     logger.info(f"Request to {BROADCAST_EVENTS_PATH}, received {len(req.payload.events)} event(s)")
     for event in req.payload.events:
-        node.processor.handle(event=event, source=KnowledgeSource.External)
+        node.processor.handle(event=event, source=req.source_node)
     
 @koi_net_router.post(POLL_EVENTS_PATH)
 @node.secure.envelope_handler

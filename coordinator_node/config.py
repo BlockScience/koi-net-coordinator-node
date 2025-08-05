@@ -4,7 +4,7 @@ from koi_net.config import NodeConfig, KoiNetConfig
 from koi_net.protocol.node import NodeProfile, NodeProvides, NodeType
 
 class CoordinatorConfig(NodeConfig):
-    koi_net: KoiNetConfig | None = Field(default_factory = lambda:
+    koi_net: KoiNetConfig = Field(default_factory = lambda:
         KoiNetConfig(
             node_name="coordinator",
             node_profile=NodeProfile(
