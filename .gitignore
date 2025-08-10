@@ -5,3 +5,5 @@ venv
 .env
 *.json
 __pycache__
+config.yaml
+priv_key.pem
