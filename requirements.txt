@@ -1,5 +1,4 @@
-koi-net>=1.0.0b17
-rid-lib>=3.2.2
+koi-net>=1.1.0b1
 fastapi
 uvicorn
 rich
