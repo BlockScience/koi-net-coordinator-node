@@ -10,18 +10,23 @@ from .core import node
 logger = logging.getLogger(__name__)
 
 
-@node.processor.pipeline.register_handler(HandlerType.Network, rid_types=[KoiNetNode])
+@node.processor.pipeline.register_handler(
+    HandlerType.Network, 
+    rid_types=[KoiNetNode])
 def handshake_handler(ctx: HandlerContext, kobj: KnowledgeObject):
-    logger.info("Handling node handshake")
 
     # only respond if node declares itself as NEW
     if kobj.event_type != EventType.NEW:
         return
+    
+    logger.info("Handling node handshake")
         
     logger.info("Sharing this node's bundle with peer")
     identity_bundle = ctx.effector.deref(ctx.identity.rid)
     ctx.event_queue.push_event_to(
-        event=Event.from_bundle(EventType.NEW, identity_bundle),
+        event=Event.from_bundle(
+            event_type=EventType.NEW, 
+            bundle=identity_bundle),
         node=kobj.rid,
         flush=True
     )
