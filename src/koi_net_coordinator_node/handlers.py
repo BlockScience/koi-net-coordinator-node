@@ -1,28 +1,26 @@
 import logging
 from rid_lib.types import KoiNetNode, KoiNetEdge
 from koi_net.context import HandlerContext
-from koi_net.processor.handler import HandlerType
+from koi_net.processor.handler import KnowledgeHandler, HandlerType
 from koi_net.processor.knowledge_object import KnowledgeObject
 from koi_net.protocol.event import Event, EventType
 from koi_net.protocol.edge import EdgeType, generate_edge_bundle
-from .core import node
 
 logger = logging.getLogger(__name__)
 
 
-@node.processor.pipeline.register_handler(
+@KnowledgeHandler.create(
     HandlerType.Network, 
     rid_types=[KoiNetNode])
 def handshake_handler(ctx: HandlerContext, kobj: KnowledgeObject):
-
     # only respond if node declares itself as NEW
-    if kobj.event_type != EventType.NEW:
+    if not (kobj.event_type == EventType.NEW and kobj.source == kobj.rid):
         return
     
     logger.info("Handling node handshake")
         
     logger.info("Sharing this node's bundle with peer")
-    identity_bundle = ctx.effector.deref(ctx.identity.rid)
+    identity_bundle = ctx.cache.read(ctx.identity.rid)
     ctx.event_queue.push_event_to(
         event=Event.from_bundle(
             event_type=EventType.NEW, 
