@@ -25,8 +25,7 @@ def handshake_handler(ctx: HandlerContext, kobj: KnowledgeObject):
         event=Event.from_bundle(
             event_type=EventType.NEW, 
             bundle=identity_bundle),
-        node=kobj.rid,
-        flush=True
+        target=kobj.rid
     )
     
     logger.info("Proposing new edge")    
@@ -39,5 +38,5 @@ def handshake_handler(ctx: HandlerContext, kobj: KnowledgeObject):
         rid_types=[KoiNetNode, KoiNetEdge]
     )
         
-    ctx.handle(rid=edge_bundle.rid, event_type=EventType.FORGET)
-    ctx.handle(bundle=edge_bundle)
+    ctx.kobj_queue.put_kobj(rid=edge_bundle.rid, event_type=EventType.FORGET)
+    ctx.kobj_queue.put_kobj(bundle=edge_bundle)
