@@ -1,5 +1,4 @@
-from .core import CoordinatorAssembler
+from .core import CoordinatorNode
 
-
-node = CoordinatorAssembler.create()
-node.server.run()
+node = CoordinatorNode()
+node.entrypoint.run()

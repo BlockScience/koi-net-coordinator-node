@@ -1,7 +1,13 @@
 from pydantic import Field
 from rid_lib.types import KoiNetNode, KoiNetEdge
-from koi_net.config import NodeConfig, KoiNetConfig, ServerConfig
-from koi_net.protocol.node import NodeProfile, NodeProvides, NodeType
+from koi_net.config.full_node import (
+    NodeConfig, 
+    KoiNetConfig, 
+    ServerConfig, 
+    NodeProfile, 
+    NodeType, 
+    NodeProvides
+)
 
 
 class CoordinatorConfig(NodeConfig):
