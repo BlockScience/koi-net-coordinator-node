@@ -1,8 +1,11 @@
 import logging
 from rid_lib.types import KoiNetNode, KoiNetEdge
-from koi_net.context import HandlerContext
-from koi_net.processor.handler import KnowledgeHandler, HandlerType
-from koi_net.processor.knowledge_object import KnowledgeObject
+from koi_net.processor.handler import (
+    KnowledgeHandler, 
+    HandlerType, 
+    HandlerContext,
+    KnowledgeObject
+)
 from koi_net.protocol.event import Event, EventType
 from koi_net.protocol.edge import EdgeType, generate_edge_bundle
 
@@ -21,7 +24,7 @@ def handshake_handler(ctx: HandlerContext, kobj: KnowledgeObject):
         
     logger.info("Sharing this node's bundle with peer")
     identity_bundle = ctx.cache.read(ctx.identity.rid)
-    ctx.event_queue.push_event_to(
+    ctx.event_queue.push(
         event=Event.from_bundle(
             event_type=EventType.NEW, 
             bundle=identity_bundle),
@@ -38,5 +41,5 @@ def handshake_handler(ctx: HandlerContext, kobj: KnowledgeObject):
         rid_types=[KoiNetNode, KoiNetEdge]
     )
         
-    ctx.kobj_queue.put_kobj(rid=edge_bundle.rid, event_type=EventType.FORGET)
-    ctx.kobj_queue.put_kobj(bundle=edge_bundle)
+    ctx.kobj_queue.push(rid=edge_bundle.rid, event_type=EventType.FORGET)
+    ctx.kobj_queue.push(bundle=edge_bundle)

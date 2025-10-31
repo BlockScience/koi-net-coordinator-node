@@ -1,11 +1,10 @@
-from koi_net.core import NodeAssembler
+from koi_net.core import FullNode
 from .config import CoordinatorConfig
 from .handlers import handshake_handler
 
 
-class CoordinatorAssembler(NodeAssembler):
-    config = CoordinatorConfig
-    knowledge_handlers = [
-        *NodeAssembler.knowledge_handlers,
+class CoordinatorNode(FullNode):
+    config_cls = CoordinatorConfig
+    knowledge_handlers = FullNode.knowledge_handlers + [
         handshake_handler
     ]
