@@ -22,5 +22,8 @@ dependencies = [
 [project.optional-dependencies]
 dev = ["twine>=6.0", "build"]
 
+[project.entry-points."koi_net.node"]
+coordinator = "koi_net_coordinator_node.core:CoordinatorNode"
+
 [project.urls]
 Homepage = "https://github.com/BlockScience/koi-net-coordinator-node/"
