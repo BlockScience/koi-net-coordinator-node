@@ -8,3 +8,4 @@ __pycache__
 config.yaml
 priv_key.pem
 dist/*
+*.ndjson
