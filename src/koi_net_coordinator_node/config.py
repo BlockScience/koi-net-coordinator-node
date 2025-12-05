@@ -1,23 +1,22 @@
-from pydantic import Field
 from rid_lib.types import KoiNetNode, KoiNetEdge
-from koi_net.config import NodeConfig, KoiNetConfig, ServerConfig
-from koi_net.protocol.node import NodeProfile, NodeProvides, NodeType
+from koi_net.config.full_node import (
+    FullNodeConfig, 
+    KoiNetConfig, 
+    ServerConfig, 
+    NodeProfile, 
+    NodeProvides
+)
 
-class CoordinatorConfig(NodeConfig):
-    server: ServerConfig = Field(default_factory=lambda: 
-        ServerConfig(
-            port=8080
-        )
-    )
-    koi_net: KoiNetConfig = Field(default_factory=lambda:
-        KoiNetConfig(
-            node_name="coordinator",
-            node_profile=NodeProfile(
-                node_type=NodeType.FULL,
-                provides=NodeProvides(
-                    event=[KoiNetNode, KoiNetEdge],
-                    state=[KoiNetNode, KoiNetEdge]
-                )
+
+class CoordinatorConfig(FullNodeConfig):
+    server: ServerConfig = ServerConfig(port=8080)
+    koi_net: KoiNetConfig = KoiNetConfig(
+        node_name="coordinator",
+        node_profile=NodeProfile(
+            provides=NodeProvides(
+                event=[KoiNetNode, KoiNetEdge],
+                state=[KoiNetNode, KoiNetEdge]
             )
-        )
+        ),
+        rid_types_of_interest=[KoiNetNode, KoiNetEdge]
     )
