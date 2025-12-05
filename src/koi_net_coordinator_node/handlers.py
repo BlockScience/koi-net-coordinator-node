@@ -1,37 +1,37 @@
-import logging
+import structlog
 from rid_lib.types import KoiNetNode, KoiNetEdge
-from koi_net.context import HandlerContext
-from koi_net.processor.handler import HandlerType
-from koi_net.processor.knowledge_object import KnowledgeObject
 from koi_net.protocol.event import Event, EventType
 from koi_net.protocol.edge import EdgeType, generate_edge_bundle
-from .core import node
+from koi_net.processor.handler import (
+    KnowledgeHandler, 
+    HandlerType, 
+    HandlerContext,
+    KnowledgeObject
+)
 
-logger = logging.getLogger(__name__)
+log = structlog.stdlib.get_logger()
 
 
-@node.processor.pipeline.register_handler(
+@KnowledgeHandler.create(
     HandlerType.Network, 
     rid_types=[KoiNetNode])
 def handshake_handler(ctx: HandlerContext, kobj: KnowledgeObject):
-
     # only respond if node declares itself as NEW
-    if kobj.event_type != EventType.NEW:
+    if not (kobj.event_type == EventType.NEW and kobj.source == kobj.rid):
         return
     
-    logger.info("Handling node handshake")
+    log.info("Handling node handshake")
         
-    logger.info("Sharing this node's bundle with peer")
-    identity_bundle = ctx.effector.deref(ctx.identity.rid)
-    ctx.event_queue.push_event_to(
+    log.info("Sharing this node's bundle with peer")
+    identity_bundle = ctx.cache.read(ctx.identity.rid)
+    ctx.event_queue.push(
         event=Event.from_bundle(
             event_type=EventType.NEW, 
             bundle=identity_bundle),
-        node=kobj.rid,
-        flush=True
+        target=kobj.rid
     )
     
-    logger.info("Proposing new edge")    
+    log.info("Proposing new edge")    
     # defer handling of proposed edge
     
     edge_bundle = generate_edge_bundle(
@@ -41,5 +41,5 @@ def handshake_handler(ctx: HandlerContext, kobj: KnowledgeObject):
         rid_types=[KoiNetNode, KoiNetEdge]
     )
         
-    ctx.handle(rid=edge_bundle.rid, event_type=EventType.FORGET)
-    ctx.handle(bundle=edge_bundle)
+    ctx.kobj_queue.push(rid=edge_bundle.rid, event_type=EventType.FORGET)
+    ctx.kobj_queue.push(bundle=edge_bundle)

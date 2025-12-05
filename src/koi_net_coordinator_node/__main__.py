@@ -1,3 +1,3 @@
-from .core import node
+from .core import CoordinatorNode
 
-node.server.run()
+CoordinatorNode().run()
