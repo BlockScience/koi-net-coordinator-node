@@ -1,15 +1,15 @@
-import logging
+import structlog
 from rid_lib.types import KoiNetNode, KoiNetEdge
+from koi_net.protocol.event import Event, EventType
+from koi_net.protocol.edge import EdgeType, generate_edge_bundle
 from koi_net.processor.handler import (
     KnowledgeHandler, 
     HandlerType, 
     HandlerContext,
     KnowledgeObject
 )
-from koi_net.protocol.event import Event, EventType
-from koi_net.protocol.edge import EdgeType, generate_edge_bundle
 
-logger = logging.getLogger(__name__)
+log = structlog.stdlib.get_logger()
 
 
 @KnowledgeHandler.create(
@@ -20,9 +20,9 @@ def handshake_handler(ctx: HandlerContext, kobj: KnowledgeObject):
     if not (kobj.event_type == EventType.NEW and kobj.source == kobj.rid):
         return
     
-    logger.info("Handling node handshake")
+    log.info("Handling node handshake")
         
-    logger.info("Sharing this node's bundle with peer")
+    log.info("Sharing this node's bundle with peer")
     identity_bundle = ctx.cache.read(ctx.identity.rid)
     ctx.event_queue.push(
         event=Event.from_bundle(
@@ -31,7 +31,7 @@ def handshake_handler(ctx: HandlerContext, kobj: KnowledgeObject):
         target=kobj.rid
     )
     
-    logger.info("Proposing new edge")    
+    log.info("Proposing new edge")    
     # defer handling of proposed edge
     
     edge_bundle = generate_edge_bundle(
