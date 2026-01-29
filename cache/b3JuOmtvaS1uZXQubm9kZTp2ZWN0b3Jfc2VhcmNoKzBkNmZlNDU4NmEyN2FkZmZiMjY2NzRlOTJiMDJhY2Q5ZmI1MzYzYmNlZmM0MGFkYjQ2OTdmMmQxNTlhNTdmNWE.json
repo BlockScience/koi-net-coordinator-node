@@ -1,0 +1,25 @@
+{
+  "manifest": {
+    "rid": "orn:koi-net.node:vector_search+0d6fe4586a27adffb26674e92b02acd9fb5363bcefc40adb4697f2d159a57f5a",
+    "timestamp": "2025-12-18T07:40:16.074647Z",
+    "sha256_hash": "2b6fb879d988df47e9234f1ad18b5c3f250bb7b58748856136760f78254e487d"
+  },
+  "contents": {
+    "base_url": "http://127.0.0.1:8005/koi-net",
+    "node_type": "FULL",
+    "provides": {
+      "event": [
+        "orn:vector",
+        "orn:normalized.text",
+        "orn:koi-net.node",
+        "orn:func.query",
+        "orn:func.resp"
+      ],
+      "state": [
+        "orn:vector",
+        "orn:koi-net.node"
+      ]
+    },
+    "public_key": "MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEbE2OxTxMMS58aypY3ZmRUyWvLoxhEDfUXf4yTqgnxJMyMQbKhiVnxkO7aGZxbfiA5k+10KczGnbN7GxCQnD5MA=="
+  }
+}

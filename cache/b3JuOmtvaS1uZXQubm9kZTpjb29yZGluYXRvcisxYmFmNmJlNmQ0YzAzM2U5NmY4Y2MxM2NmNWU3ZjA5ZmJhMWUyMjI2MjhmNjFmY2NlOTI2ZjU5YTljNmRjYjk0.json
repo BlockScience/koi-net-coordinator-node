@@ -1,0 +1,22 @@
+{
+  "manifest": {
+    "rid": "orn:koi-net.node:coordinator+1baf6be6d4c033e96f8cc13cf5e7f09fba1e222628f61fcce926f59a9c6dcb94",
+    "timestamp": "2025-12-18T07:39:46.800745Z",
+    "sha256_hash": "28bca6594ab4a95da9e39ffe57b5f026bc4c18f38b7e94f009f95e8fcfd2342e"
+  },
+  "contents": {
+    "base_url": "http://127.0.0.1:8080/koi-net",
+    "node_type": "FULL",
+    "provides": {
+      "event": [
+        "orn:koi-net.node",
+        "orn:koi-net.edge"
+      ],
+      "state": [
+        "orn:koi-net.node",
+        "orn:koi-net.edge"
+      ]
+    },
+    "public_key": "MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEpdlFd9xvj8yJVR771th5KVu4p4WYcjQYDcfNb+L05s4iUHOmlkgriUGeMAd4MsaP4v1WzrYEB9LiLCZTw9HT2w=="
+  }
+}
