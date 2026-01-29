@@ -1,0 +1,22 @@
+{
+  "manifest": {
+    "rid": "orn:koi-net.node:text_normalizer+3712f9a529f5e2219bf0ef01db00de5b0219e0630d5fa95304ca9784989448e0",
+    "timestamp": "2025-12-18T07:40:01.730180Z",
+    "sha256_hash": "89826ea49272270b94166362ef72fba7041d94492b3388ffe59fe42e64d18d3f"
+  },
+  "contents": {
+    "base_url": "http://127.0.0.1:8002/koi-net",
+    "node_type": "FULL",
+    "provides": {
+      "event": [
+        "orn:normalized.text",
+        "orn:koi-net.node"
+      ],
+      "state": [
+        "orn:normalized.text",
+        "orn:koi-net.node"
+      ]
+    },
+    "public_key": "MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEA93rrdtxw465IS7IVcu/pyeR7G8GK2u+57NiaW6QilAEKgbuhhlpEooeny3FYJXY14Lw8n7NXIjmpuIqEgCPHA=="
+  }
+}

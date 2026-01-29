@@ -6,9 +6,5 @@ venv
 # *.json
 __pycache__
 config.yaml
-private_key.pem
+priv_key.pem
 dist/*
-cache
-log.ndjson
-build/
-*.egg-info

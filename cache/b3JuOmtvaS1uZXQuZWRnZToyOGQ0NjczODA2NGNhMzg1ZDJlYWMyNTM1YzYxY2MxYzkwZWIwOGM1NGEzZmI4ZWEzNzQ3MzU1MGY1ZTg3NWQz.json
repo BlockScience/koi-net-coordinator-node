@@ -1,0 +1,17 @@
+{
+  "manifest": {
+    "rid": "orn:koi-net.edge:28d46738064ca385d2eac2535c61cc1c90eb08c54a3fb8ea37473550f5e875d3",
+    "timestamp": "2025-12-18T07:41:56.720265Z",
+    "sha256_hash": "40adfcd0dc12528500721864d9d2c7743e2a9ad94e156ef2c3ad7372bf887d09"
+  },
+  "contents": {
+    "source": "orn:koi-net.node:text_normalizer+3712f9a529f5e2219bf0ef01db00de5b0219e0630d5fa95304ca9784989448e0",
+    "target": "orn:koi-net.node:coordinator+1baf6be6d4c033e96f8cc13cf5e7f09fba1e222628f61fcce926f59a9c6dcb94",
+    "edge_type": "WEBHOOK",
+    "status": "APPROVED",
+    "rid_types": [
+      "orn:koi-net.node",
+      "orn:koi-net.edge"
+    ]
+  }
+}

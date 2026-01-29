@@ -1,0 +1,16 @@
+{
+  "manifest": {
+    "rid": "orn:koi-net.edge:e4f304082c8cea0bca97526e8769e6b915b036fa5fc6e5c37ec5e105d05de7de",
+    "timestamp": "2025-12-18T07:42:00.252126Z",
+    "sha256_hash": "9d293fd479bb664ef13cc1f047d9d286672e84225c0d84f36714cb4cceef8378"
+  },
+  "contents": {
+    "source": "orn:koi-net.node:hackmd_sensor+ade579c118a3fe058495440514f6e6d0bc7fec1ae2eec818bdda654be27480ed",
+    "target": "orn:koi-net.node:vector_search+0d6fe4586a27adffb26674e92b02acd9fb5363bcefc40adb4697f2d159a57f5a",
+    "edge_type": "WEBHOOK",
+    "status": "APPROVED",
+    "rid_types": [
+      "orn:koi-net.node"
+    ]
+  }
+}
