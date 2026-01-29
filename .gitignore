@@ -6,5 +6,8 @@ venv
 # *.json
 __pycache__
 config.yaml
-priv_key.pem
+private_key.pem
 dist/*
+cache
+tests
+log.ndjson
