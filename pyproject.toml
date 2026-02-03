@@ -1,3 +1,10 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.metadata]
+allow-direct-references = true
+
 [project]
 name = "koi-net-coordinator-node"
 version = "1.0.0"
@@ -9,8 +16,29 @@ readme = "README.md"
 requires-python = ">=3.10"
 license = {file = "LICENSE"}
 dependencies = [
-    "koi-net>=1.2.4"
+    "koi-net",
+    "koi-net-shared",
+    "fastapi>=0.115.12",
+    "uvicorn>=0.34.2",
+    "rich>=14.0.0"
 ]
+
+[project.optional-dependencies]
+dev = ["twine>=6.0", "build", "pytest>=7.0", "pytest-mock>=3.10"]
+
+[tool.uv.sources]
+koi-net = { workspace = true }
+koi-net-shared = { workspace = true }
 
 [project.urls]
 Homepage = "https://github.com/BlockScience/koi-net-coordinator-node/"
+
+[tool.pyright]
+venvPath = "."
+venv = ".venv"
+include = ["src", "tests"]
+exclude = ["**/__pycache__", "**/.pytest_cache"]
+pythonVersion = "3.10"
+typeCheckingMode = "basic"
+reportMissingImports = true
+extraPaths = ["src", "../koi-net/src", "../koi-net-shared/src"]
