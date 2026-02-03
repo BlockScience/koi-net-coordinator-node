@@ -6,6 +6,9 @@ venv
 *.json
 __pycache__
 config.yaml
+koi-network-config.yaml
 priv_key.pem
 dist/*
 *.ndjson
+*.egg-info
+build/
