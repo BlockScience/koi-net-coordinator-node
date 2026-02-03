@@ -9,7 +9,6 @@ config.yaml
 private_key.pem
 dist/*
 cache
-tests
 log.ndjson
 build/
 *.egg-info
