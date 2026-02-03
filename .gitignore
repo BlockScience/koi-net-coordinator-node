@@ -3,12 +3,13 @@ identity.json
 events_queue.json
 venv
 .env
-*.json
+# *.json
 __pycache__
 config.yaml
-koi-network-config.yaml
-priv_key.pem
+private_key.pem
 dist/*
-*.ndjson
-*.egg-info
+cache
+tests
+log.ndjson
 build/
+*.egg-info
