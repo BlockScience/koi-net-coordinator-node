@@ -1,0 +1,24 @@
+{"event": "Assembling 'CoordinatorNode'", "logger": "koi_net.build.assembler", "level": "debug", "timestamp": "2026-02-23T03:55:57.123397Z", "module": "assembler", "func_name": "__new__"}
+{"event": "Creating build artifact...", "logger": "koi_net.build.artifact", "level": "debug", "timestamp": "2026-02-23T03:55:57.124628Z", "module": "artifact", "func_name": "build"}
+{"event": "Collected 26 components", "logger": "koi_net.build.artifact", "level": "debug", "timestamp": "2026-02-23T03:55:57.125386Z", "module": "artifact", "func_name": "collect_comps"}
+{"event": "Built dependency graph", "logger": "koi_net.build.artifact", "level": "debug", "timestamp": "2026-02-23T03:55:57.126920Z", "module": "artifact", "func_name": "build_dependencies"}
+{"event": "Resolved initialization order: kobj_queue -> event_queue -> poll_event_buf -> broadcast_event_buf -> config_schema -> config -> knowledge_handlers -> deref_handlers -> config_loader -> cache -> identity -> graph -> secure_manager -> profile_monitor -> handshaker -> response_handler -> error_handler -> entrypoint -> request_handler -> sync_manager -> resolver -> event_worker -> handler_context -> effector -> pipeline -> kobj_worker", "logger": "koi_net.build.artifact", "level": "debug", "timestamp": "2026-02-23T03:55:57.127366Z", "module": "artifact", "func_name": "build_init_order"}
+{"event": "Resolved start order: event_worker -> kobj_worker -> config_loader -> graph -> secure_manager -> profile_monitor -> handshaker -> sync_manager", "logger": "koi_net.build.artifact", "level": "debug", "timestamp": "2026-02-23T03:55:57.127588Z", "module": "artifact", "func_name": "build_start_order"}
+{"event": "Resolved stop order: kobj_worker -> event_worker", "logger": "koi_net.build.artifact", "level": "debug", "timestamp": "2026-02-23T03:55:57.127793Z", "module": "artifact", "func_name": "build_stop_order"}
+{"event": "Done", "logger": "koi_net.build.artifact", "level": "debug", "timestamp": "2026-02-23T03:55:57.127964Z", "module": "artifact", "func_name": "build"}
+{"event": "Building components...", "logger": "koi_net.build.assembler", "level": "debug", "timestamp": "2026-02-23T03:55:57.128105Z", "module": "assembler", "func_name": "_build_components"}
+{"event": "Done", "logger": "koi_net.build.assembler", "level": "debug", "timestamp": "2026-02-23T03:55:57.140783Z", "module": "assembler", "func_name": "_build_components"}
+{"event": "Returning assembled node", "logger": "koi_net.build.assembler", "level": "debug", "timestamp": "2026-02-23T03:55:57.140943Z", "module": "assembler", "func_name": "__new__"}
+{"event": "Starting node...", "logger": "koi_net.build.container", "level": "info", "timestamp": "2026-02-23T03:55:57.141028Z", "module": "container", "func_name": "start"}
+{"event": "Starting event_worker...", "logger": "koi_net.build.container", "level": "info", "timestamp": "2026-02-23T03:55:57.141083Z", "module": "container", "func_name": "start"}
+{"event": "Starting kobj_worker...", "logger": "koi_net.build.container", "level": "info", "timestamp": "2026-02-23T03:55:57.141224Z", "module": "container", "func_name": "start"}
+{"event": "Starting config_loader...", "logger": "koi_net.build.container", "level": "info", "timestamp": "2026-02-23T03:55:57.141435Z", "module": "container", "func_name": "start"}
+{"event": "Starting graph...", "logger": "koi_net.build.container", "level": "info", "timestamp": "2026-02-23T03:55:57.143372Z", "module": "container", "func_name": "start"}
+{"event": "Generating network graph", "logger": "koi_net.network.graph", "level": "debug", "timestamp": "2026-02-23T03:55:57.143492Z", "module": "graph", "func_name": "generate"}
+{"event": "Done", "logger": "koi_net.network.graph", "level": "debug", "timestamp": "2026-02-23T03:55:57.143663Z", "module": "graph", "func_name": "generate"}
+{"event": "Starting secure_manager...", "logger": "koi_net.build.container", "level": "info", "timestamp": "2026-02-23T03:55:57.143765Z", "module": "container", "func_name": "start"}
+{"event": "Stopping node...", "logger": "koi_net.build.container", "level": "info", "timestamp": "2026-02-23T03:55:57.143833Z", "module": "container", "func_name": "stop"}
+{"event": "Stopping kobj_worker...", "logger": "koi_net.build.container", "level": "info", "timestamp": "2026-02-23T03:55:57.143895Z", "module": "container", "func_name": "stop"}
+{"event": "Stopping event_worker...", "logger": "koi_net.build.container", "level": "info", "timestamp": "2026-02-23T03:55:57.143945Z", "module": "container", "func_name": "stop"}
+{"event": "Received 'STOP_WORKER' signal, shutting down...", "logger": "koi_net.workers.kobj_worker", "level": "info", "timestamp": "2026-02-23T03:55:57.144003Z", "module": "kobj_worker", "func_name": "run"}
+{"event": "Received 'STOP_WORKER' signal, flushing all buffers...", "logger": "koi_net.workers.event_worker", "level": "info", "timestamp": "2026-02-23T03:55:57.144214Z", "module": "event_worker", "func_name": "run"}
