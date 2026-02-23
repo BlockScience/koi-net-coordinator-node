@@ -1,9 +1,9 @@
 from rid_lib.types import KoiNetNode, KoiNetEdge
 from koi_net.config.full_node import (
-    FullNodeConfig, 
-    KoiNetConfig, 
-    ServerConfig, 
-    NodeProfile, 
+    FullNodeConfig,
+    ServerConfig,
+    KoiNetConfig,
+    NodeProfile,
     NodeProvides
 )
 
