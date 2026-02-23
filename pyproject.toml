@@ -17,7 +17,8 @@ requires-python = ">=3.10"
 license = {file = "LICENSE"}
 dependencies = [
     "koi-net",
-    "koi-net-shared",
+    "colorama>=0.4.6",
+    "rid_lib>=3.2.13",
     "fastapi>=0.115.12",
     "uvicorn>=0.34.2",
     "rich>=14.0.0"
@@ -25,10 +26,6 @@ dependencies = [
 
 [project.optional-dependencies]
 dev = ["twine>=6.0", "build", "pytest>=7.0", "pytest-mock>=3.10"]
-
-[tool.uv.sources]
-koi-net = { workspace = true }
-koi-net-shared = { workspace = true }
 
 [project.urls]
 Homepage = "https://github.com/BlockScience/koi-net-coordinator-node/"
@@ -41,4 +38,3 @@ exclude = ["**/__pycache__", "**/.pytest_cache"]
 pythonVersion = "3.10"
 typeCheckingMode = "basic"
 reportMissingImports = true
-extraPaths = ["src", "../koi-net/src", "../koi-net-shared/src"]

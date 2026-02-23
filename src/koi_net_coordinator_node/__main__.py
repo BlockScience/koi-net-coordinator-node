@@ -1,3 +1,4 @@
 from .core import CoordinatorNode
 
-CoordinatorNode().run()
+if __name__ == "__main__":
+    CoordinatorNode().run()
