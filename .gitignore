@@ -1,14 +1,43 @@
-rid_cache
+# Python
+__pycache__/
+**/__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.python-version
+.venv/
+venv/
+env/
+bin/
+**/bin/
+
+# Environment and secrets
+.env
+.env.*
+!.env.example
+priv_key.pem
+private_key.pem
+
+# Generated node runtime/config
+config.yaml
+.rid_cache/
+rid_cache/
+cache/
+state/
 identity.json
 events_queue.json
-venv
-.env
-*.json
-__pycache__
-config.yaml
-koi-network-config.yaml
-priv_key.pem
-dist/*
+log.ndjson
 *.ndjson
-*.egg-info
+*.ndjson.*
+.run.log
+.run.*.log
+
+# Build/test artifacts
+uv.lock
 build/
+dist/
+*.egg-info/
+.pytest_cache/
+
+# OS/editor noise
+.DS_Store
