@@ -1,8 +1,8 @@
 from koi_net.core import FullNode
 from .config import CoordinatorConfig
-from .handlers import handshake_handler
+from .handshake_handler import HandshakeHandler
 
 
 class CoordinatorNode(FullNode):
     config_schema = CoordinatorConfig
-    knowledge_handlers = FullNode.knowledge_handlers + [handshake_handler]
+    handshake_handler = HandshakeHandler
