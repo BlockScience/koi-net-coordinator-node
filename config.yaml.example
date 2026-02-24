@@ -1,0 +1,36 @@
+koi_net:
+  node_name: coordinator
+  node_rid:
+  node_profile:
+    base_url: http://127.0.0.1:8080/koi-net
+    node_type: FULL
+    provides:
+      event:
+        - orn:koi-net.node
+        - orn:koi-net.edge
+      state:
+        - orn:koi-net.node
+        - orn:koi-net.edge
+    public_key:
+  rid_types_of_interest:
+    - orn:koi-net.node
+    - orn:koi-net.edge
+  cache_directory_path: ./cache
+  private_key_pem_path: private_key.pem
+  event_worker:
+    queue_timeout: 0.1
+    max_buf_len: 5
+    max_wait_time: 1.0
+  kobj_worker:
+    queue_timeout: 0.1
+  first_contact:
+    rid:
+    url:
+
+env:
+  priv_key_password: PRIV_KEY_PASSWORD
+
+server:
+  host: 127.0.0.1
+  port: 8080
+  path: /koi-net
