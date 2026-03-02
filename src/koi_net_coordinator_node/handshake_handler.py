@@ -1,10 +1,15 @@
 from dataclasses import dataclass
+
 from rid_lib.types import KoiNetNode, KoiNetEdge
-from koi_net.protocol.event import Event, EventType
-from koi_net.protocol.edge import EdgeType, generate_edge_bundle
 from koi_net.components.interfaces import KnowledgeHandler, HandlerType
-from koi_net.protocol.knowledge_object import KnowledgeObject
 from koi_net.components import NodeIdentity, Cache, EventQueue, KobjQueue
+from koi_net.protocol import (
+    KnowledgeObject,
+    Event, 
+    EventType, 
+    EdgeType, 
+    generate_edge_bundle
+)
 
 
 @dataclass
@@ -14,11 +19,12 @@ class HandshakeHandler(KnowledgeHandler):
     event_queue: EventQueue
     kobj_queue: KobjQueue
     
+    # handler config
     handler_type = HandlerType.Network
     rid_types = (KoiNetNode,)
     
     def handle(self, kobj: KnowledgeObject):
-        # only respond if node declares itself as NEW
+        # only respond if a foreign node declares itself as NEW
         if not (kobj.event_type == EventType.NEW and kobj.source == kobj.rid):
             return
         
@@ -42,6 +48,8 @@ class HandshakeHandler(KnowledgeHandler):
             edge_type=EdgeType.WEBHOOK,
             rid_types=[KoiNetNode, KoiNetEdge]
         )
-            
+        
+        # force a refresh of cached edge so communication happens regardless
+        # of state change
         self.kobj_queue.push(rid=edge_bundle.rid, event_type=EventType.FORGET)
         self.kobj_queue.push(bundle=edge_bundle)
