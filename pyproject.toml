@@ -7,7 +7,7 @@ allow-direct-references = true
 
 [project]
 name = "koi-net-coordinator-node"
-version = "1.0.0"
+version = "0.1.0"
 description = "Implementation of KOI-net coordinator node in Python"
 authors = [
     {name = "Luke Miller", email = "luke@block.science"}

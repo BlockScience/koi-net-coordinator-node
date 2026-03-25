@@ -33,7 +33,6 @@ log.ndjson
 .run.*.log
 
 # Build/test artifacts
-uv.lock
 build/
 dist/
 *.egg-info/
