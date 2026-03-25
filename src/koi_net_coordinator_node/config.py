@@ -1,9 +1,9 @@
 from rid_lib.types import KoiNetNode, KoiNetEdge
-from koi_net.config.full_node import (
-    FullNodeConfig,
-    ServerConfig,
-    KoiNetConfig,
-    NodeProfile,
+from koi_net.config import (
+    FullNodeConfig, 
+    KoiNetConfig, 
+    ServerConfig, 
+    FullNodeProfile, 
     NodeProvides
 )
 
@@ -12,7 +12,7 @@ class CoordinatorConfig(FullNodeConfig):
     server: ServerConfig = ServerConfig(port=8080)
     koi_net: KoiNetConfig = KoiNetConfig(
         node_name="coordinator",
-        node_profile=NodeProfile(
+        node_profile=FullNodeProfile(
             provides=NodeProvides(
                 event=[KoiNetNode, KoiNetEdge],
                 state=[KoiNetNode, KoiNetEdge]

@@ -16,14 +16,7 @@ readme = "README.md"
 requires-python = ">=3.10"
 license = {file = "LICENSE"}
 dependencies = [
-    "koi-net~=1.2.5",
-    "colorama>=0.4.6",
-    "rid_lib>=3.2.14",
-    "rich>=14.0.0",
-    "structlog>=24.4.0",
-    "fastapi==0.121.2",
-    "starlette==0.49.3",
-    "uvicorn==0.38.0"
+    "koi-net~=2.0",
 ]
 
 [project.optional-dependencies]
