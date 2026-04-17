@@ -1,11 +1,11 @@
-from rid_lib.types import KoiNetNode, KoiNetEdge
 from koi_net.config import (
-    FullNodeConfig, 
-    KoiNetConfig, 
-    ServerConfig, 
-    FullNodeProfile, 
-    NodeProvides
+    FullNodeConfig,
+    FullNodeProfile,
+    KoiNetConfig,
+    NodeProvides,
+    ServerConfig,
 )
+from rid_lib.types import KoiNetEdge, KoiNetNode
 
 
 class CoordinatorConfig(FullNodeConfig):
