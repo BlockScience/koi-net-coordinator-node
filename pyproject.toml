@@ -10,7 +10,7 @@ name = "koi-net-coordinator-node"
 version = "0.1.0"
 description = "Implementation of KOI-net coordinator node in Python"
 authors = [
-    {name = "Luke Miller", email = "luke@block.science"}
+    {name = "Luke Miller", email = "luke@dynamicalsystemsgroup.com"}
 ]
 readme = "README.md"
 requires-python = ">=3.10"
@@ -23,4 +23,4 @@ dependencies = [
 dev = ["twine>=6.0", "build", "pytest>=7.0", "pytest-mock>=3.10"]
 
 [project.urls]
-Homepage = "https://github.com/BlockScience/koi-net-coordinator-node/"
+Homepage = "https://github.com/DynamicalSystemsGroup/koi-net-coordinator-node/"
